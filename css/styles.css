@@ -1,0 +1,30 @@
+body {
+    height: 100vh;
+    margin: 0;
+    background-image: url("../images/index-background.jpeg");
+    background-size: cover;
+}
+
+h1 {
+    user-select: none;
+    margin-top: 10%;
+    font-size: 250px;
+    font-family: 'Rubik', sans-serif;
+    color: rgb(35, 28, 103);
+    text-shadow: 0px 0px 12px #FFFFFF;
+    -webkit-text-stroke: 4px black;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.nav {
+    gap: 20px;
+}
+
+.nav a:hover {
+    background-color: var(--bs-gray-800);
+    color: white !important;
+}
