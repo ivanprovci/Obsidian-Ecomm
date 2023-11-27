@@ -48,6 +48,9 @@
                             <li><a class="dropdown-item" href="">Socks</a></li>
                         </ul>
                     </li>
+					<li>
+                        <a href="sites/display_test.php" class="nav-link px-3 rounded link-body-emphasis dropdown-toggle" aria-expanded="false">Display Test</a>
+                    </li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -74,5 +77,4 @@
         <h1>OBSIDIAN</h1>
     </div>
 </body>
-
 </html>
