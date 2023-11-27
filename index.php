@@ -48,7 +48,7 @@
                             <li><a class="dropdown-item" href="">Socks</a></li>
                         </ul>
                     </li>
-					<li>
+		    <li>
                         <a href="sites/display_test.php" class="nav-link px-3 rounded link-body-emphasis dropdown-toggle" aria-expanded="false">Display Test</a>
                     </li>
                 </ul>
