@@ -6,7 +6,7 @@
                 <li><a href="/index.php" class="nav-link px-3 rounded link-body-emphasis">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="nav-link px-3 rounded link-body-emphasis dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Men</a>
-                    <ul class="dropdown-menu text-small" style="">
+                    <ul class="dropdown-menu text-small">
                         <li><a class="dropdown-item" href="">T-Shirts</a></li>
                         <li><a class="dropdown-item" href="">Shorts</a></li>
                         <li><a class="dropdown-item" href="">Pants</a></li>
@@ -15,7 +15,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="nav-link px-3 rounded link-body-emphasis dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Women</a>
-                    <ul class="dropdown-menu text-small" style="">
+                    <ul class="dropdown-menu text-small">
                         <li><a class="dropdown-item" href="">T-Shirts</a></li>
                         <li><a class="dropdown-item" href="">Shorts</a></li>
                         <li><a class="dropdown-item" href="">Leggings</a></li>
@@ -24,7 +24,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="nav-link px-3 rounded link-body-emphasis dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Accessories</a>
-                    <ul class="dropdown-menu text-small" style="">
+                    <ul class="dropdown-menu text-small">
                         <li><a class="dropdown-item" href="">Hats</a></li>
                         <li><a class="dropdown-item" href="">Shoes</a></li>
                         <li><a class="dropdown-item" href="">Backpacks</a></li>
@@ -43,7 +43,7 @@
                 <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-circle" style="font-size:2em; color: var(--bs-gray-700);"></i>
                 </a>
-                <ul class="dropdown-menu text-small" style="">
+                <ul class="dropdown-menu text-small">
                     <li><a class="dropdown-item" href="/pages/user-profile.php">View Profile</a></li>
                     <li><a class="dropdown-item" href="/pages/favourites.php">Favourites</a></li>
                     <li>
