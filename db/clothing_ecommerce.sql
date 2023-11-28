@@ -20,21 +20,10 @@ CREATE TABLE products
 );
 
 -- create the users
-CREATE USER IF NOT EXISTS user1@localhost 
-IDENTIFIED BY 'password';
+CREATE USER IF NOT EXISTS mgs_user
+IDENTIFIED BY 'pa$$word';
 
 -- grant privleges to the users
 GRANT SELECT, INSERT, DELETE, UPDATE
 ON clothing_ecommerce.* 
-TO user1;
-
-/*
--- Create the categories table
-CREATE TABLE categories 
-(
-  category_id INT NOT NULL AUTO_INCREMENT,
-  category_name VARCHAR(255) NOT NULL UNIQUE, 
-  PRIMARY KEY (category_id),
-  INDEX product_id (product_id)
-);
-*/
+TO mgs_user;

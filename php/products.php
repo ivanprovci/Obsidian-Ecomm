@@ -4,7 +4,7 @@ require_once ('sql_connect.php');
 
 $products = Commerce\Product::all();
 
-print_r($products);
+//print_r($products);
 
 echo "<br> <br> <br>";
 
@@ -51,6 +51,6 @@ foreach ($products['data'] as $product)
 	$stmt->execute();
 
 	// Print confirmation message
-	echo "Inserted $name into the Products table.<br>";
+	//echo "Inserted $name into the Products table.<br>";
 }
 ?>

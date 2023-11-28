@@ -1,7 +1,7 @@
 <?php
     $dsn = 'mysql:host=localhost;dbname=clothing_ecommerce';
-    $username = 'user1';
-    $password = 'password';
+    $username = 'mgs_user';
+    $password = 'pa$$word';
     
     try 
     {
