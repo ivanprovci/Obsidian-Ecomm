@@ -7,15 +7,15 @@ USE clothing_ecommerce;  -- MySQL command
 CREATE TABLE products 
 (
   product_id INT NOT NULL AUTO_INCREMENT,
-  product_name VARCHAR(255) NOT NULL UNIQUE, 
-  product_description VARCHAR (255) NOT NULL UNIQUE,
+  product_name VARCHAR(255) NOT NULL, 
+  product_description VARCHAR (255) NOT NULL,
   product_price DECIMAL(10,2) NOT NULL, 
   product_inventory INT,
   product_sku VARCHAR(255) UNIQUE,
   product_gender VARCHAR(255),
   product_category VARCHAR(255),
   product_brand VARCHAR(255),
-  product_image VARCHAR(255),
+  product_image VARCHAR(255) UNIQUE,
   PRIMARY KEY (product_id)
 );
 

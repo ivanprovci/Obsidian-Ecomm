@@ -102,7 +102,6 @@ if (isset($_POST["submit"]))
   $category = $_POST["category"];
   $brand = $_POST["brand"];
 
-
   $querry = "SELECT product_name, product_description, product_price, product_inventory, product_sku, product_gender, product_category, product_brand, product_image FROM products WHERE 1";
   $params = [];
   
