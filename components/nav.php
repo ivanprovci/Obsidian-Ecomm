@@ -32,7 +32,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="/pages/display_test.php" class="nav-link px-3 rounded link-body-emphasis dropdown-toggle" aria-expanded="false">Display Test</a>
+                    <a href="pages/display_test.php" class="nav-link px-3 rounded link-body-emphasis dropdown-toggle" aria-expanded="false">Display Test</a>
                 </li>
             </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
