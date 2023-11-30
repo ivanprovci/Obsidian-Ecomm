@@ -30,14 +30,12 @@
 <body>
 
 <?php
-// Check if the form is submitted
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve user input
+
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Validate and process the data (you should add more validation)
-    // For simplicity, we'll just print the data for now
     echo "Username: $username <br>";
     echo "Password: $password <br>";
 }
