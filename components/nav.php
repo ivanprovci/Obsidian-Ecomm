@@ -41,6 +41,7 @@
                 <ul class="dropdown-menu text-small">
                     <li><a class="dropdown-item" href="pages/user-profile.php">View Profile</a></li>
                     <li><a class="dropdown-item" href="pages/favourites.php">Favourites</a></li>
+                    <li><a class="dropdown-item" href="/INFO3135_Project/pages/cart.php">View Cart</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

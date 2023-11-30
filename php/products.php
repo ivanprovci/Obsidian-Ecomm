@@ -8,7 +8,7 @@ $products = Commerce\Product::all();
 
 echo "<br> <br> <br>";
 
-//$query = file_get_contents('db/clothing_ecommerce2.sql');
+//$query = file_get_contents('db/clothing_ecommerce.sql');
 //$stmt = $db->prepare($query);
 //$stmt->execute();
 

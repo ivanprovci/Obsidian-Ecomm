@@ -1,4 +1,6 @@
 <html>
+<?php
+?>
 
 <head>
     <?php require_once('../components/head.php'); ?>
@@ -35,7 +37,7 @@
 <body>
     <?php require_once('../components/nav.php'); ?>
     <div class="body">
-        <form class='sidebar' action="catalog.php" method="post">
+        <form class='sidebar' action="catalog.php" method="get">
             <div class="container mt-2">
                 <div class="form-group">
                     <label for="name">Name:</label>
@@ -43,11 +45,13 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <input type="text" id="description" name="description" class="form-control" placeholder="Enter description...">
+                    <input type="text" id="description" name="description" class="form-control"
+                        placeholder="Enter description...">
                 </div>
                 <div class="form-group">
                     <label for="price">Price:</label>
-                    <input type="number" id="price" name="price" class="form-control" min="0" placeholder="Enter price...">
+                    <input type="number" id="price" name="price" class="form-control" min="0"
+                        placeholder="Enter price...">
                 </div>
                 <div class="form-group">
                     <label for="sku">SKU:</label>
@@ -112,52 +116,60 @@ function sanitizeInput($data)
     return $data;
 }
 
-if (isset($_POST["submit"])) {
+if (isset($_GET["submit"]))
+{
 
     // Sanitize each input variable using the function
-    $name = sanitizeInput($_POST["name"]);
-    $description = sanitizeInput($_POST["description"]);
-    $price = sanitizeInput($_POST["price"]);
-    $sku = sanitizeInput($_POST["sku"]);
-    $gender = isset($_POST["gender"]) ? sanitizeInput($_POST["gender"]) : "";
-    $category = sanitizeInput($_POST["category"]);
-    $brand = sanitizeInput($_POST["brand"]);
+    $name = sanitizeInput($_GET["name"]);
+    $description = sanitizeInput($_GET["description"]);
+    $price = sanitizeInput($_GET["price"]);
+    $sku = sanitizeInput($_GET["sku"]);
+    $gender = isset($_GET["gender"]) ? sanitizeInput($_GET["gender"]) : "";
+    $category = sanitizeInput($_GET["category"]);
+    $brand = sanitizeInput($_GET["brand"]);
 
     $querry = "SELECT product_name, product_description, product_price, product_inventory, product_sku, product_gender, product_category, product_brand, product_image FROM products WHERE 1";
     $params = [];
 
     // Add name condition
-    if ($name != "") {
+    if ($name != "")
+    {
         $querry .= " AND product_name LIKE :name";
         $params[":name"] = "%$name%";
     }
     // Add description condition
-    if ($description != "") {
+    if ($description != "")
+    {
         $querry .= " AND product_description LIKE :description";
         $params[":description"] = "%$description%";
     }
     // Add price condition
-    if ($price != "") {
+    if ($price != "")
+    {
         $querry .= " AND product_price <= :price";
         $params[":price"] = $price;
     }
     // Add sku condition
-    if ($sku != "") {
+    if ($sku != "")
+    {
         $querry .= " AND product_sku = :sku";
         $params[":sku"] = $sku;
     }
     // Add gender condition
-    if ($gender != "") {
+    if ($gender != "")
+    {
         $querry .= " AND product_gender = :gender";
         $params[":gender"] = $gender;
     }
     // Add category condition
-    if ($category != "") {
+    if ($category != "")
+    {
         $querry .= " AND product_category = :category";
         $params[":category"] = $category;
     }
     // Add brand condition
-    if ($brand != "") {
+    if ($brand != "")
+    {
         $querry .= " AND product_brand = :brand";
         $params[":brand"] = $brand;
     }
@@ -166,14 +178,20 @@ if (isset($_POST["submit"])) {
     $stmt->execute($params);
 
     // display results
-    if ($stmt->rowCount() > 0) {
+    if ($stmt->rowCount() > 0)
+    {
         echo "<h1>Search Results</h1>";
-        echo "<table border='1'>";
+        echo "<table>";
         echo "<tr><th>Add to Cart</th><th>Name</th><th>Description</th><th>Price</th><th>Inventory</th><th>SKU</th><th>Gender</th><th>Category</th><th>Brand</th><th>Image</th></tr>";
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
             echo "<tr>";
             // Add a button with the product_sku as the value
-            echo "<td><button type='button' value='" . $row["product_sku"] . "'>Add to Cart</button></td>";
+            echo "<td><form method = 'get'>";
+            echo "<input type = 'hidden' name='product_sku' value='" . $row["product_sku"] . "'>";
+            echo "<button type = 'submit' name='add_to_cart'>Add to Cart</button>";
+            echo "</form></td>";
+            // display rest of product info
             echo "<td>" . $row["product_name"] . "</td>";
             echo "<td>" . $row["product_description"] . "</td>";
             echo "<td>" . $row["product_price"] . "</td>";
@@ -186,7 +204,9 @@ if (isset($_POST["submit"])) {
             echo "</tr>";
         }
         echo "</table>";
-    } else {
+    }
+    else
+    {
         echo "<h1>No results found</h1>";
     }
 }
