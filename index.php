@@ -6,7 +6,7 @@
     <title>Home</title>
 </head>
 
-<body>
+<body class='index-background'>
     <?php require_once('components/nav.php'); ?>
     <div class="flex-center">
         <h1>OBSIDIAN</h1>

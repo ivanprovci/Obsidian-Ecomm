@@ -3,8 +3,8 @@
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/index.php" class="nav-link px-3 rounded link-body-emphasis">Home</a></li>
-                    <li><a href="pages/catalog.php" class="nav-link px-3 rounded link-body-emphasis">Catalog</a></li>
+                <li><a href="/INFO3135_Project/index.php" class="nav-link px-3 rounded link-body-emphasis">Home</a></li>
+                <li><a href="pages/catalog.php" class="nav-link px-3 rounded link-body-emphasis">Catalog</a></li>
                 <li class="dropdown">
                     <a href="#" class="nav-link px-3 rounded link-body-emphasis dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Men</a>
                     <ul class="dropdown-menu text-small">
@@ -33,17 +33,14 @@
                     </ul>
                 </li>
             </ul>
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-            </form>
 
             <div class="dropdown text-end">
                 <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-circle" style="font-size:2em; color: var(--bs-gray-700);"></i>
                 </a>
                 <ul class="dropdown-menu text-small">
-                    <li><a class="dropdown-item" href="/pages/user-profile.php">View Profile</a></li>
-                    <li><a class="dropdown-item" href="/pages/favourites.php">Favourites</a></li>
+                    <li><a class="dropdown-item" href="pages/user-profile.php">View Profile</a></li>
+                    <li><a class="dropdown-item" href="pages/favourites.php">Favourites</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

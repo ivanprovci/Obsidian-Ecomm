@@ -1,8 +1,6 @@
 body {
     height: 100vh;
     margin: 0;
-    background-image: url("../images/index-background.jpeg");
-    background-size: cover;
 }
 
 h1 {
@@ -26,4 +24,9 @@ h1 {
 .nav a:hover {
     background-color: var(--bs-gray-800);
     color: white !important;
+}
+
+.index-background {
+    background-image: url("../images/index-background.jpeg");
+    background-size: cover;
 }
