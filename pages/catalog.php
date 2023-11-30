@@ -3,83 +3,100 @@
 <head>
     <?php require_once('../components/head.php'); ?>
     <title>Catalog</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .body {
+            flex: 1;
+            display: flex;
+        }
+
+        .sidebar {
+            flex-shrink: 0;
+            padding: 16px;
+            border-right: 1px solid gray;
+        }
+
+        .card {
+            padding: 16px;
+            margin: 16px;
+            width: 300px;
+        }
+
+        .form-group {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
     <?php require_once('../components/nav.php'); ?>
-    <form action="catalog.php" method="post">
-        <div class="container mt-2">
-            <div class="row">
-                <div class="col-md-3 col-12">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter name...">
+    <div class="body">
+        <form class='sidebar' action="catalog.php" method="post">
+            <div class="container mt-2">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter name...">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input type="text" id="description" name="description" class="form-control" placeholder="Enter description...">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" class="form-control" min="0" placeholder="Enter price...">
+                </div>
+                <div class="form-group">
+                    <label for="sku">SKU:</label>
+                    <input type="text" id="sku" name="sku" class="form-control" placeholder="Enter SKU...">
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <div class="form-check">
+                        <input type="radio" id="men" name="gender" value="men">
+                        <label for="male">Men's</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" id="women" name="gender" value="women">
+                        <label for="female">Women's</label>
                     </div>
                 </div>
-                <div class="col-md-6 col-12">
-                    <div class="form-group">
-                        <label for="description">Description:</label>
-                        <input type="text" id="description" name="description" class="form-control" placeholder="Enter description...">
-                    </div>
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category" class="form-select">
+                        <option value="">Select category...</option>
+                        <option value="pants">Pants</option>
+                        <option value="shirts">Shirts</option>
+                        <option value="hoodies">Hoodies</option>
+                    </select>
                 </div>
-                <div class="col-md-2 col-12">
-                    <div class="form-group">
-                        <label for="price">Price:</label>
-                        <input type="number" id="price" name="price" class="form-control" min="0" placeholder="Enter price...">
-                    </div>
+                <div class="form-group">
+                    <label for="brand">Brand:</label>
+                    <select id="brand" name="brand" class="form-select">
+                        <option value="">Select brand...</option>
+                        <option value="nike">Nike</option>
+                        <option value="adidas">Adidas</option>
+                        <option value="puma">Puma</option>
+                    </select>
                 </div>
-                <div class="col-md-1 col-12">
-                    <div class="form-group">
-                        <label for="sku">SKU:</label>
-                        <input type="text" id="sku" name="sku" class="form-control" placeholder="Enter SKU...">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 col-12">
-                    <div class="form-group">
-                        <label for="gender">Gender:</label>
-                        <div class="form-check">
-                            <input type="radio" id="men" name="gender" value="men">
-                            <label for="male">Men's</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" id="women" name="gender" value="women">
-                            <label for="female">Women's</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-12">
-                    <div class="form-group">
-                        <label for="category">Category:</label>
-                        <select id="category" name="category" class="form-select">
-                            <option value="">Select category...</option>
-                            <option value="pants">Pants</option>
-                            <option value="shirts">Shirts</option>
-                            <option value="hoodies">Hoodies</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3 col-12">
-                    <div class="form-group">
-                        <label for="brand">Brand:</label>
-                        <select id="brand" name="brand" class="form-select">
-                            <option value="">Select brand...</option>
-                            <option value="nike">Nike</option>
-                            <option value="adidas">Adidas</option>
-                            <option value="puma">Puma</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3 col-12">
-                    <div class="form-group">
-                        <button type="submit" name="submit" value="Search" class="btn btn-primary mt-4">Search</button>
-                        <small class="form-text align-middle mt-3 d-inline-block">Leave fields blank to search all</small>
-                    </div>
+                <div class="form-group">
+                    <button type="submit" name="submit" value="Search" class="btn btn-primary mt-4">Search</button>
+                    <small class="form-text align-middle mt-3 d-inline-block">Leave fields blank to search all</small>
                 </div>
             </div>
+        </form>
+        <div class="container">
+            <!-- <div class="card">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, eveniet? Dolorem dignissimos maiores non delectus possimus dolor nulla repudiandae vitae provident quae, obcaecati ipsam unde impedit corrupti veritatis minima porro?</div>
+            <div class="card">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi quaerat qui iure ipsam maiores velit tempora, deleniti nesciunt fuga suscipit alias vero rem, corporis officia totam saepe excepturi odit ea.</div>
+            <div class="card">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis illo ex quas, commodi eligendi aliquam ut, dolor, atque aliquid iure nulla. Laudantium optio accusantium quaerat fugiat, natus officia esse autem?</div>
+            <div class="card">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nihil impedit eius amet adipisci dolorum vel nostrum sit excepturi corporis tenetur cum, dolore incidunt blanditiis. Unde earum minima laboriosam eos!</div>
+            <div class="card">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis illo ex quas, commodi eligendi aliquam ut, dolor, atque aliquid iure nulla. Laudantium optio accusantium quaerat fugiat, natus officia esse autem?</div>
+            <div class="card">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nihil impedit eius amet adipisci dolorum vel nostrum sit excepturi corporis tenetur cum, dolore incidunt blanditiis. Unde earum minima laboriosam eos!</div> -->
         </div>
-    </form>
+    </div>
 </body>
 
 </html>
