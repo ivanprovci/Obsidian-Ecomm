@@ -9,7 +9,7 @@
 <body class='index-background'>
     <?php require_once('components/nav.php'); ?>
     <div class="flex-center">
-        <h1>OBSIDIAN</h1>
+        <h1 class='obsidian-header'>OBSIDIAN</h1>
     </div>
 </body>
 

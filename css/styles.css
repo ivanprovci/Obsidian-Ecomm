@@ -3,7 +3,7 @@ body {
     margin: 0;
 }
 
-h1 {
+.obsidian-header {
     user-select: none;
     margin-top: 10%;
     font-size: 250px;
