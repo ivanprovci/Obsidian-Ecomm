@@ -1,18 +1,23 @@
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <form action="display_test.php" method="post">
+  <form action="catalog.php" method="post">
     <div class="container mt-2">
       <div class="row">
         <div class="col-md-3 col-12">
@@ -24,7 +29,8 @@
         <div class="col-md-6 col-12">
           <div class="form-group">
             <label for="description">Description:</label>
-            <input type="text" id="description" name="description" class="form-control" placeholder="Enter description...">
+            <input type="text" id="description" name="description" class="form-control"
+              placeholder="Enter description...">
           </div>
         </div>
         <div class="col-md-2 col-12">
@@ -46,11 +52,11 @@
             <label for="gender">Gender:</label>
             <div class="form-check">
               <input type="radio" id="men" name="gender" value="men">
-              <label for="male">Men</label>
+              <label for="male">Men's</label>
             </div>
             <div class="form-check">
               <input type="radio" id="women" name="gender" value="women">
-              <label for="female">Women</label>
+              <label for="female">Women's</label>
             </div>
           </div>
         </div>
@@ -79,70 +85,80 @@
         <div class="col-md-3 col-12">
           <div class="form-group">
             <button type="submit" name="submit" value="Search" class="btn btn-primary mt-4">Search</button>
-			<small class="form-text align-middle mt-3 d-inline-block">Leave fields blank to search all</small>
+            <small class="form-text align-middle mt-3 d-inline-block">Leave fields blank to search all</small>
           </div>
         </div>
       </div>
     </div>
   </form>
 </body>
+
 </html>
 <?php
 require_once('../php/products.php');
 
+// Sanitize user input
+function sanitizeInput($data)
+{
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
 
-if (isset($_POST["submit"])) 
+if (isset($_POST["submit"]))
 {
 
-  $name = $_POST["name"];
-  $description = $_POST["description"];
-  $price = $_POST["price"];
-  $sku = $_POST["sku"];
-  $gender = isset($_POST["gender"]) ? $_POST["gender"] : "";
-  $category = $_POST["category"];
-  $brand = $_POST["brand"];
+  // Sanitize each input variable using the function
+  $name = sanitizeInput($_POST["name"]);
+  $description = sanitizeInput($_POST["description"]);
+  $price = sanitizeInput($_POST["price"]);
+  $sku = sanitizeInput($_POST["sku"]);
+  $gender = isset($_POST["gender"]) ? sanitizeInput($_POST["gender"]) : "";
+  $category = sanitizeInput($_POST["category"]);
+  $brand = sanitizeInput($_POST["brand"]);
 
   $querry = "SELECT product_name, product_description, product_price, product_inventory, product_sku, product_gender, product_category, product_brand, product_image FROM products WHERE 1";
   $params = [];
-  
+
   // Add name condition
-  if ($name != "") 
+  if ($name != "")
   {
     $querry .= " AND product_name LIKE :name";
     $params[":name"] = "%$name%";
   }
   // Add description condition
-  if ($description != "") 
+  if ($description != "")
   {
     $querry .= " AND product_description LIKE :description";
     $params[":description"] = "%$description%";
   }
   // Add price condition
-  if ($price != "") 
+  if ($price != "")
   {
     $querry .= " AND product_price <= :price";
     $params[":price"] = $price;
   }
- // Add sku condition
-    if ($sku != "") 
+  // Add sku condition
+  if ($sku != "")
   {
     $querry .= " AND product_sku = :sku";
     $params[":sku"] = $sku;
   }
   // Add gender condition
-  if ($gender != "") 
+  if ($gender != "")
   {
     $querry .= " AND product_gender = :gender";
     $params[":gender"] = $gender;
   }
   // Add category condition
-  if ($category != "") 
+  if ($category != "")
   {
     $querry .= " AND product_category = :category";
     $params[":category"] = $category;
   }
   // Add brand condition
-  if ($brand != "") 
+  if ($brand != "")
   {
     $querry .= " AND product_brand = :brand";
     $params[":brand"] = $brand;
@@ -151,15 +167,17 @@ if (isset($_POST["submit"]))
   $stmt = $db->prepare($querry);
   $stmt->execute($params);
 
-  //  display results
-  if ($stmt->rowCount() > 0) 
+  // display results
+  if ($stmt->rowCount() > 0)
   {
     echo "<h1>Search Results</h1>";
     echo "<table border='1'>";
-    echo "<tr><th>Name</th><th>Description</th><th>Price</th><th>Inventory</th><th>SKU</th><th>Gender</th><th>Category</th><th>Brand</th><th>Image</th></tr>";
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) 
-	{
+    echo "<tr><th>Add to Cart</th><th>Name</th><th>Description</th><th>Price</th><th>Inventory</th><th>SKU</th><th>Gender</th><th>Category</th><th>Brand</th><th>Image</th></tr>";
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+    {
       echo "<tr>";
+      // Add a button with the product_sku as the value
+      echo "<td><button type='button' value='" . $row["product_sku"] . "'>Add to Cart</button></td>";
       echo "<td>" . $row["product_name"] . "</td>";
       echo "<td>" . $row["product_description"] . "</td>";
       echo "<td>" . $row["product_price"] . "</td>";
@@ -172,8 +190,8 @@ if (isset($_POST["submit"]))
       echo "</tr>";
     }
     echo "</table>";
-  } 
-  else 
+  }
+  else
   {
     echo "<h1>No results found</h1>";
   }

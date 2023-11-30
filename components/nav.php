@@ -4,6 +4,7 @@
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/index.php" class="nav-link px-3 rounded link-body-emphasis">Home</a></li>
+                    <li><a href="pages/catalog.php" class="nav-link px-3 rounded link-body-emphasis">Catalog</a></li>
                 <li class="dropdown">
                     <a href="#" class="nav-link px-3 rounded link-body-emphasis dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Men</a>
                     <ul class="dropdown-menu text-small">
@@ -30,9 +31,6 @@
                         <li><a class="dropdown-item" href="">Backpacks</a></li>
                         <li><a class="dropdown-item" href="">Socks</a></li>
                     </ul>
-                </li>
-                <li>
-                    <a href="pages/display_test.php" class="nav-link px-3 rounded link-body-emphasis dropdown-toggle" aria-expanded="false">Display Test</a>
                 </li>
             </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
