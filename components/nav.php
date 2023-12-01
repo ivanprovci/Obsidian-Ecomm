@@ -39,8 +39,8 @@
                     <i class="bi bi-person-circle" style="font-size:2em; color: var(--bs-gray-700);"></i>
                 </a>
                 <ul class="dropdown-menu text-small">
-                    <li><a class="dropdown-item" href="pages/user-profile.php">View Profile</a></li>
-                    <li><a class="dropdown-item" href="pages/favourites.php">Favourites</a></li>
+                    <li><a class="dropdown-item" href="/INFO3135_Project/pages/user-profile.php">View Profile</a></li>
+                    <li><a class="dropdown-item" href="/INFO3135_Project/pages/favourites.php">Favourites</a></li>
                     <li><a class="dropdown-item" href="/INFO3135_Project/pages/cart.php">View Cart</a></li>
                     <li>
                         <hr class="dropdown-divider">
