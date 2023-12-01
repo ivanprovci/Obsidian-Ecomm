@@ -169,7 +169,7 @@ if (!isset($_SESSION['cart']))
                 // Add price condition
                 if ($price != "")
                 {
-                    $querry .= " AND product_price <= :price";
+                    $querry .= " AND product_price = :price";
                     $params[":price"] = $price;
                 }
                 // Add sku condition
