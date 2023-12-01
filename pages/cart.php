@@ -44,7 +44,7 @@ require_once('../php/cart_update.php');
             echo "<td>$" . number_format($row["product_price"], 2) . "</td>";
 
             // Display the quantity in an input field
-            echo "<td><input type='number' name='quantity[]' value='" . $quantity . "' min='1' max='99'></td>";
+            echo "<td><input type='number' name='quantity[]' value='" . $quantity . "' min='0' max='99'></td>";
 
             // Add a hidden input field for the product SKU
             echo "<input type='hidden' name='product_sku[]' value='" . $product_sku . "'>";
