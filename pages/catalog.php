@@ -11,12 +11,27 @@
             flex-direction: column;
         }
 
+        img {
+            box-sizing: border-box;
+            object-fit: contain;
+            width: 434px;
+            height: 434px;
+        }
+
+        p {
+            margin-bottom: 3px;
+        }
+
+        .width-100 {
+            width: 100%;
+        }
+
         .body {
-            flex: 1;
             display: flex;
         }
 
         .sidebar {
+            width: 310px;
             flex-shrink: 0;
             padding: 16px;
             border-right: 1px solid gray;
@@ -25,11 +40,22 @@
         .card {
             padding: 16px;
             margin: 16px;
-            width: 300px;
+            width: 450px;
         }
 
         .form-group {
             margin-top: 10px;
+        }
+
+        .flex-space-between {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .product-display {
+            padding: 32px;
+            display: flex;
+            flex-wrap: wrap;
         }
     </style>
 </head>
@@ -45,13 +71,11 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <input type="text" id="description" name="description" class="form-control"
-                        placeholder="Enter description...">
+                    <input type="text" id="description" name="description" class="form-control" placeholder="Enter description...">
                 </div>
                 <div class="form-group">
                     <label for="price">Price:</label>
-                    <input type="number" id="price" name="price" class="form-control" min="0"
-                        placeholder="Enter price...">
+                    <input type="number" id="price" name="price" class="form-control" min="0" placeholder="Enter price...">
                 </div>
                 <div class="form-group">
                     <label for="sku">SKU:</label>
@@ -87,127 +111,107 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <button type="submit" name="submit" value="Search" class="btn btn-primary mt-4">Search</button>
+                    <button type="submit" name="submit" value="Search" class="btn btn-primary mt-4">Search</button> <br>
                     <small class="form-text align-middle mt-3 d-inline-block">Leave fields blank to search all</small>
                 </div>
             </div>
         </form>
-        <div class="container">
-            <!-- <div class="card">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, eveniet? Dolorem dignissimos maiores non delectus possimus dolor nulla repudiandae vitae provident quae, obcaecati ipsam unde impedit corrupti veritatis minima porro?</div>
-            <div class="card">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi quaerat qui iure ipsam maiores velit tempora, deleniti nesciunt fuga suscipit alias vero rem, corporis officia totam saepe excepturi odit ea.</div>
-            <div class="card">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis illo ex quas, commodi eligendi aliquam ut, dolor, atque aliquid iure nulla. Laudantium optio accusantium quaerat fugiat, natus officia esse autem?</div>
-            <div class="card">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nihil impedit eius amet adipisci dolorum vel nostrum sit excepturi corporis tenetur cum, dolore incidunt blanditiis. Unde earum minima laboriosam eos!</div>
-            <div class="card">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis illo ex quas, commodi eligendi aliquam ut, dolor, atque aliquid iure nulla. Laudantium optio accusantium quaerat fugiat, natus officia esse autem?</div>
-            <div class="card">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nihil impedit eius amet adipisci dolorum vel nostrum sit excepturi corporis tenetur cum, dolore incidunt blanditiis. Unde earum minima laboriosam eos!</div> -->
+        <div class="product-display">
+            <?php
+            require_once('../php/products.php');
+
+            // Sanitize user input
+            function sanitizeInput($data)
+            {
+                $data = trim($data);
+                $data = stripslashes($data);
+                $data = htmlspecialchars($data);
+                return $data;
+            }
+
+            if (isset($_GET["submit"])) {
+
+                // Sanitize each input variable using the function
+                $name = sanitizeInput($_GET["name"]);
+                $description = sanitizeInput($_GET["description"]);
+                $price = sanitizeInput($_GET["price"]);
+                $sku = sanitizeInput($_GET["sku"]);
+                $gender = isset($_GET["gender"]) ? sanitizeInput($_GET["gender"]) : "";
+                $category = sanitizeInput($_GET["category"]);
+                $brand = sanitizeInput($_GET["brand"]);
+
+                $querry = "SELECT product_name, product_description, product_price, product_inventory, product_sku, product_gender, product_category, product_brand, product_image FROM products WHERE 1";
+                $params = [];
+
+                // Add name condition
+                if ($name != "") {
+                    $querry .= " AND product_name LIKE :name";
+                    $params[":name"] = "%$name%";
+                }
+                // Add description condition
+                if ($description != "") {
+                    $querry .= " AND product_description LIKE :description";
+                    $params[":description"] = "%$description%";
+                }
+                // Add price condition
+                if ($price != "") {
+                    $querry .= " AND product_price <= :price";
+                    $params[":price"] = $price;
+                }
+                // Add sku condition
+                if ($sku != "") {
+                    $querry .= " AND product_sku = :sku";
+                    $params[":sku"] = $sku;
+                }
+                // Add gender condition
+                if ($gender != "") {
+                    $querry .= " AND product_gender = :gender";
+                    $params[":gender"] = $gender;
+                }
+                // Add category condition
+                if ($category != "") {
+                    $querry .= " AND product_category = :category";
+                    $params[":category"] = $category;
+                }
+                // Add brand condition
+                if ($brand != "") {
+                    $querry .= " AND product_brand = :brand";
+                    $params[":brand"] = $brand;
+                }
+
+                $stmt = $db->prepare($querry);
+                $stmt->execute($params);
+
+                // display results
+                if ($stmt->rowCount() > 0) {
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo '
+                        <div class="card">
+                            <div class="card-image">
+                                <img class="width-100" src="' . $row["product_image"] . 'alt="Product Image">
+                            </div>
+                            <div class="card-text">
+                                <hr>
+                                <h3>' . $row["product_name"] . '</h3>
+                                <p>' . $row["product_category"] . '/' . $row["product_gender"] . '</p>
+                                <p>' . $row["product_brand"] . '</p>
+                                <div class="flex-space-between">
+                                    <h3>$' . $row["product_price"] . '</h3>
+                                    <form method="get">
+                                        <input type="hidden" name="product_sku" value="' . $row["product_sku"] . '">
+                                        <button type="submit" class="btn btn-primary" name="add_to_cart">Add to Cart</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>';
+                    }
+                } else {
+                    echo "<h1>No results found</h1>";
+                }
+            }
+            ?>
         </div>
     </div>
 </body>
 
 </html>
-<?php
-require_once('../php/products.php');
-
-// Sanitize user input
-function sanitizeInput($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-if (isset($_GET["submit"]))
-{
-
-    // Sanitize each input variable using the function
-    $name = sanitizeInput($_GET["name"]);
-    $description = sanitizeInput($_GET["description"]);
-    $price = sanitizeInput($_GET["price"]);
-    $sku = sanitizeInput($_GET["sku"]);
-    $gender = isset($_GET["gender"]) ? sanitizeInput($_GET["gender"]) : "";
-    $category = sanitizeInput($_GET["category"]);
-    $brand = sanitizeInput($_GET["brand"]);
-
-    $querry = "SELECT product_name, product_description, product_price, product_inventory, product_sku, product_gender, product_category, product_brand, product_image FROM products WHERE 1";
-    $params = [];
-
-    // Add name condition
-    if ($name != "")
-    {
-        $querry .= " AND product_name LIKE :name";
-        $params[":name"] = "%$name%";
-    }
-    // Add description condition
-    if ($description != "")
-    {
-        $querry .= " AND product_description LIKE :description";
-        $params[":description"] = "%$description%";
-    }
-    // Add price condition
-    if ($price != "")
-    {
-        $querry .= " AND product_price <= :price";
-        $params[":price"] = $price;
-    }
-    // Add sku condition
-    if ($sku != "")
-    {
-        $querry .= " AND product_sku = :sku";
-        $params[":sku"] = $sku;
-    }
-    // Add gender condition
-    if ($gender != "")
-    {
-        $querry .= " AND product_gender = :gender";
-        $params[":gender"] = $gender;
-    }
-    // Add category condition
-    if ($category != "")
-    {
-        $querry .= " AND product_category = :category";
-        $params[":category"] = $category;
-    }
-    // Add brand condition
-    if ($brand != "")
-    {
-        $querry .= " AND product_brand = :brand";
-        $params[":brand"] = $brand;
-    }
-
-    $stmt = $db->prepare($querry);
-    $stmt->execute($params);
-
-    // display results
-    if ($stmt->rowCount() > 0)
-    {
-        echo "<h1>Search Results</h1>";
-        echo "<table>";
-        echo "<tr><th>Add to Cart</th><th>Name</th><th>Description</th><th>Price</th><th>Inventory</th><th>SKU</th><th>Gender</th><th>Category</th><th>Brand</th><th>Image</th></tr>";
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-        {
-            echo "<tr>";
-            // Add a button with the product_sku as the value
-            echo "<td><form method = 'get'>";
-            echo "<input type = 'hidden' name='product_sku' value='" . $row["product_sku"] . "'>";
-            echo "<button type = 'submit' name='add_to_cart'>Add to Cart</button>";
-            echo "</form></td>";
-            // display rest of product info
-            echo "<td>" . $row["product_name"] . "</td>";
-            echo "<td>" . $row["product_description"] . "</td>";
-            echo "<td>" . $row["product_price"] . "</td>";
-            echo "<td>" . $row["product_inventory"] . "</td>";
-            echo "<td>" . $row["product_sku"] . "</td>";
-            echo "<td>" . $row["product_gender"] . "</td>";
-            echo "<td>" . $row["product_category"] . "</td>";
-            echo "<td>" . $row["product_brand"] . "</td>";
-            echo "<td><img src='" . $row["product_image"] . "' alt='Product image' width='300' height='400'></td>";
-            echo "</tr>";
-        }
-        echo "</table>";
-    }
-    else
-    {
-        echo "<h1>No results found</h1>";
-    }
-}
-?>
