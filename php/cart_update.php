@@ -1,4 +1,5 @@
 <?php
+
 if (!isset($_SESSION['cart']))
 {
     $_SESSION['cart'] = array();
@@ -30,7 +31,7 @@ if (isset($_POST['update']))
 // Check if the clear button was pressed
 if (isset($_POST['clear']))
 {
-    // Destroy the session and reload the page
+    // unset the session and reload the page
     unset($_SESSION['cart']);
     header("Location: cart.php");
     exit;
@@ -39,9 +40,10 @@ if (isset($_POST['clear']))
 // Check if the checkout button was pressed
 if (isset($_POST['checkout']))
 {
-    // Destroy the session and reload the page
+    // unset the session and reload the page
     unset($_SESSION['cart']);
     header("Location: checkout.php");
+    exit;
 }
 
 ?>
