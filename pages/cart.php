@@ -46,7 +46,8 @@ require_once('../php/cart_update.php');
         $stmt = $db->prepare($sql);
 
         // Check if the cart is not empty
-        if (!empty($_SESSION['cart'])) {
+        if (!empty($_SESSION['cart']))
+        {
 
             echo "<form method='post'>";
             echo "<table>";
@@ -56,7 +57,8 @@ require_once('../php/cart_update.php');
             $total = 0;
 
             // Loop through the cart array
-            foreach ($_SESSION['cart'] as $product_sku => $quantity) {
+            foreach ($_SESSION['cart'] as $product_sku => $quantity)
+            {
                 $stmt->execute(array(":product_sku" => $product_sku));
 
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -90,7 +92,10 @@ require_once('../php/cart_update.php');
             echo "<button type='submit' name='update' value='update' class='btn btn-primary'>Update Cart</button>";
             echo "<button type='submit' name='checkout' value='checkout' class='btn btn-success'>Checkout</button></div>";
             echo "</form></div>";
-        } else {
+        }
+        
+        else
+        {
             echo "<p>Your cart is empty.</p>";
         }
 
