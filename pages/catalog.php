@@ -2,8 +2,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['cart']))
-{
+if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
 }
 
@@ -55,11 +54,6 @@ if (!isset($_SESSION['cart']))
             margin-top: 10px;
         }
 
-        .flex-space-between {
-            display: flex;
-            justify-content: space-between;
-        }
-
         .product-display {
             padding: 32px;
             display: flex;
@@ -79,13 +73,11 @@ if (!isset($_SESSION['cart']))
                 </div>
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <input type="text" id="description" name="description" class="form-control"
-                        placeholder="Enter description...">
+                    <input type="text" id="description" name="description" class="form-control" placeholder="Enter description...">
                 </div>
                 <div class="form-group">
                     <label for="price">Price:</label>
-                    <input type="number" id="price" name="price" class="form-control" min="0"
-                        placeholder="Enter price...">
+                    <input type="number" id="price" name="price" class="form-control" min="0" placeholder="Enter price...">
                 </div>
                 <div class="form-group">
                     <label for="sku">SKU:</label>
@@ -139,8 +131,7 @@ if (!isset($_SESSION['cart']))
                 return $data;
             }
 
-            if (isset($_GET["submit"]) || empty($_GET))
-            {
+            if (isset($_GET["submit"]) || empty($_GET)) {
 
                 // Sanitize each input variable using the function
                 $name = isset($_GET["name"]) ? sanitizeInput($_GET["name"]) : "";
@@ -155,44 +146,37 @@ if (!isset($_SESSION['cart']))
                 $params = [];
 
                 // Add name condition
-                if ($name != "")
-                {
+                if ($name != "") {
                     $querry .= " AND product_name LIKE :name";
                     $params[":name"] = "%$name%";
                 }
                 // Add description condition
-                if ($description != "")
-                {
+                if ($description != "") {
                     $querry .= " AND product_description LIKE :description";
                     $params[":description"] = "%$description%";
                 }
                 // Add price condition
-                if ($price != "")
-                {
+                if ($price != "") {
                     $querry .= " AND product_price = :price";
                     $params[":price"] = $price;
                 }
                 // Add sku condition
-                if ($sku != "")
-                {
+                if ($sku != "") {
                     $querry .= " AND product_sku = :sku";
                     $params[":sku"] = $sku;
                 }
                 // Add gender condition
-                if ($gender != "")
-                {
+                if ($gender != "") {
                     $querry .= " AND product_gender = :gender";
                     $params[":gender"] = $gender;
                 }
                 // Add category condition
-                if ($category != "")
-                {
+                if ($category != "") {
                     $querry .= " AND product_category = :category";
                     $params[":category"] = $category;
                 }
                 // Add brand condition
-                if ($brand != "")
-                {
+                if ($brand != "") {
                     $querry .= " AND product_brand = :brand";
                     $params[":brand"] = $brand;
                 }
@@ -201,10 +185,8 @@ if (!isset($_SESSION['cart']))
                 $stmt->execute($params);
 
                 // display results
-                if ($stmt->rowCount() > 0)
-                {
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-                    {
+                if ($stmt->rowCount() > 0) {
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         echo '
                         <div class="card">
                             <div class="card-image">
@@ -225,25 +207,18 @@ if (!isset($_SESSION['cart']))
                             </div>
                         </div>';
                     }
-                }
-                else
-                {
+                } else {
                     echo "<h1>No results found</h1>";
                 }
 
-                if ($_SERVER['REQUEST_METHOD'] === 'POST')
-                {
-                    if (isset($_POST['add_to_cart']))
-                    {
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    if (isset($_POST['add_to_cart'])) {
                         $product_sku = $_POST['product_sku'];
                         // Check if the product SKU is already in the cart array
-                        if (array_key_exists($product_sku, $_SESSION['cart']))
-                        {
+                        if (array_key_exists($product_sku, $_SESSION['cart'])) {
                             // If yes, increment the quantity by one
                             $_SESSION['cart'][$product_sku]++;
-                        }
-                        else
-                        {
+                        } else {
                             // If no, add the product SKU and set the quantity to one
                             $_SESSION['cart'][$product_sku] = 1;
                         }
