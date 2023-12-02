@@ -59,17 +59,31 @@
 
 <body>
 
-    <?php
+  <?php
+session_start();
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+    // Validate the login credentials (you need to implement your own validation logic)
+    $validLogin = validateLogin($username, $password);
 
-        echo "Username: $username <br>";
-        echo "Password: $password <br>";
+    if ($validLogin) {
+        // Store user information in the session
+        $_SESSION['username'] = $username;
+
+        // Redirect to a dashboard or home page after successful login
+        header('Location: dashboard.php');
+        exit();
+    } else {
+        echo "Invalid login credentials";
     }
-    ?>
+}
+?>
+
+<!-- The rest of your HTML code remains unchanged -->
+
     <div class="flex-center">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
             <h2 class='text-center'>Login</h2>
