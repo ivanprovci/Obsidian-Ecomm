@@ -59,21 +59,34 @@
 
 <body>
 
-    <?php
+   <?php
+session_start();
 
-    $username = $email = $password = '';
+$username = $email = $password = '';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+    // Validate the registration data (you need to implement your own validation logic)
+    $validRegistration = validateRegistration($username, $email, $password);
 
-        echo "Username: $username <br>";
-        echo "Email: $email <br>";
-        echo "Password: $password <br>";
+    if ($validRegistration) {
+        // Store user information in the session
+        $_SESSION['username'] = $username;
+
+        // Redirect to a dashboard or home page after successful registration
+        header('Location: dashboard.php');
+        exit();
+    } else {
+        echo "Invalid registration data";
     }
-    ?>
+}
+?>
+
+<!-- The rest of your HTML code remains unchanged -->
+
     <div class="flex-center">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
             <h2 class='text-center'>Create a New Account</h2>
