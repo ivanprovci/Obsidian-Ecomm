@@ -53,7 +53,7 @@
         .flex-center {
             border: 1px solid gray;
             padding: 60px;
-            margin-top: 15%;
+            margin-top: 10%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -101,15 +101,16 @@
             }
             else
             {
-                $error = "Invalid login credentials";
+                $error = "- Invalid login credentials";
             }
         }
         else
         {
-            $error = "Invalid login credentials";
+            $error = "- Invalid registration data: <br> - Username must have 3-20 characters <br> - Password must have 8 characters and 1 number";
         }
     }
 
+    // Define a function to validate the login data
     function validateLogin($username, $password)
     {
         // Username must be 3-20 characters

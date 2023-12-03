@@ -5,8 +5,6 @@
                 <li><a href="/INFO3135_Project/index.php" class="nav-link px-3 rounded link-body-emphasis">Home</a></li>
                 <li><a href="/INFO3135_Project/pages/catalog.php"
                         class="nav-link px-3 rounded link-body-emphasis">Catalog</a></li>
-                <li><a href="/INFO3135_Project/pages/register.php"
-                        class="nav-link px-3 rounded link-body-emphasis">Register_Test</a></li>
             </ul>
 
             <div class="dropdown text-end">
@@ -23,7 +21,10 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#"><form method="post"><button type="submit" name="logout" class="btn btn-danger">Log Out</button></form></a></li>
+                    <li><a class="dropdown-item" href="#">
+                            <form method="post"><button type="submit" name="logout" class="btn btn-danger">Log
+                                    Out</button></form>
+                        </a></li>
                 </ul>
             </div>
         </div>

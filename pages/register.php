@@ -52,7 +52,7 @@
         .flex-center {
             border: 1px solid gray;
             padding: 60px;
-            margin-top: 5%;
+            margin-top: 10%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -93,7 +93,7 @@
 
             if ($rowExists)
             {
-                $error = "This email or username already exists";
+                $error = "- This email or username already exists";
             }
             else
             {
@@ -116,7 +116,7 @@
         }
         else
         {
-            $error = "Invalid registration data: <br> - Username must have 3-20 characters <br> - Password must have 8 characters and 1 number";
+            $error = "- Invalid registration data: <br> - Username must have 3-20 characters <br> - Password must have 8 characters and 1 number";
         }
     }
 
