@@ -1,14 +1,15 @@
 <html>
-<?php
-session_start();
-require_once('../php/sql_connect.php');
-require_once('../php/cart_update.php');
-
-//echo print_r($_SESSION['cart']);
-?>
 
 <head>
-    <?php require_once('../components/head.php'); ?>
+    <?php 
+    
+    require_once('../components/head.php');
+    require_once('../components/nav.php');
+    require_once('../php/sql_connect.php');
+    require_once('../php/cart_update.php');
+
+    //echo print_r($_SESSION['cart']);
+    ?>
 
     <title>Cart</title>
     <style>
@@ -37,7 +38,6 @@ require_once('../php/cart_update.php');
 </head>
 
 <body>
-    <?php require_once('../components/nav.php'); ?>
     <h1 class="text-center">Your Cart</h1><br><br>
     <div class="flex-center">
         <?php
@@ -93,7 +93,6 @@ require_once('../php/cart_update.php');
             echo "<button type='submit' name='checkout' value='checkout' class='btn btn-success'>Checkout</button></div>";
             echo "</form></div>";
         }
-        
         else
         {
             echo "<p>Your cart is empty.</p>";

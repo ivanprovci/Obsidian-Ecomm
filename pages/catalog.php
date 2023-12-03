@@ -1,22 +1,24 @@
 <html>
-<?php
-session_start();
-
-if (!isset($_SESSION['cart']))
-{
-    $_SESSION['cart'] = array();
-}
-if (!isset($_SESSION['favourites']))
-{
-    $_SESSION['favourites'] = array();
-}
-
-//print_r($_SESSION['cart']);
-//print_r($_SESSION['favourites']);
-?>
 
 <head>
-    <?php require_once('../components/head.php'); ?>
+
+    <?php
+    require_once('../components/head.php');
+    require_once('../components/nav.php');
+
+    if (!isset($_SESSION['cart']))
+    {
+        $_SESSION['cart'] = array();
+    }
+    if (!isset($_SESSION['favourites']))
+    {
+        $_SESSION['favourites'] = array();
+    }
+
+    //print_r($_SESSION['cart']);
+    //print_r($_SESSION['favourites']);
+    ?>
+    
     <title>Catalog</title>
     <style>
         body {
@@ -69,7 +71,6 @@ if (!isset($_SESSION['favourites']))
 </head>
 
 <body>
-    <?php require_once('../components/nav.php'); ?>
     <div class="body">
         <form class='sidebar' action="catalog.php" method="get">
             <div class="container mt-2">

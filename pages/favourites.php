@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-
-session_start();
-require_once('../php/sql_connect.php');
-require_once('../php/favourites_update.php');
-
-?>
 
 <head>
-    <?php require_once('../components/head.php'); ?>
-
     <title>Favourites</title>
+
+    <?php
+    require_once('../components/head.php');
+    require_once('../components/nav.php');
+    require_once('../php/sql_connect.php');
+    require_once('../php/favourites_update.php');
+
+    ?>
+
     <style>
         td,
         th {
@@ -38,7 +38,6 @@ require_once('../php/favourites_update.php');
 </head>
 
 <body>
-    <?php require_once('../components/nav.php'); ?>
 
     <h1 class='text-center'>Your Favourites</h1><br><br>
     <div class='flex-center'>
@@ -75,6 +74,7 @@ require_once('../php/favourites_update.php');
             echo "<button type='submit' name='clear' value='clear' class='btn btn-danger'>Clear Favourites</button>";
             echo "</form>";
         }
+        
         else
         {
             echo "<p>You have no favourites</p>";
