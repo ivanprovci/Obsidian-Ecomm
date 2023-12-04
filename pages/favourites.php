@@ -7,7 +7,6 @@
     <?php
     require_once('../components/head.php');
     require_once('../components/nav.php');
-    require_once('../php/sql_connect.php');
     require_once('../php/favourites_update.php');
 
     ?>

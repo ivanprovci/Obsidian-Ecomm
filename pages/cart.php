@@ -5,7 +5,6 @@
     
     require_once('../components/head.php');
     require_once('../components/nav.php');
-    require_once('../php/sql_connect.php');
     require_once('../php/cart_update.php');
 
     //echo print_r($_SESSION['cart']);

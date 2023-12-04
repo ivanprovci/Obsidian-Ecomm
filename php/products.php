@@ -1,6 +1,5 @@
 <?php
 require_once ('API.php');
-require_once ('sql_connect.php');
 
 $products = Commerce\Product::all();
 

@@ -28,7 +28,8 @@ CREATE TABLE users
     password VARCHAR(255) NOT NULL,
     firstname VARCHAR(50),
     lastname VARCHAR(50),
-    profileimage VARCHAR(255)
+    profileimage VARCHAR(255),
+    sessiondata JSON
 );
 
 -- create the users

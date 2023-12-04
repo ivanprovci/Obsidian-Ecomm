@@ -2,7 +2,10 @@
 <html lang="en">
 
 <head>
-    <?php require_once('../components/head.php'); ?>
+    <?php
+    require_once('../components/head.php');
+    require_once('../php/sql_connect.php');
+    ?>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +13,6 @@
 
     <?php
     session_start();
-    require_once('../php/sql_connect.php');
     ?>
 
     <style>
@@ -81,7 +83,8 @@
         if ($validLogin)
         {
             // Prepare a SQL statement to select the user data by username
-            $stmt = $db->prepare("SELECT * FROM `users` WHERE `username` = :username");
+            $query = "SELECT * FROM `users` WHERE `username` = :username";
+            $stmt = $db->prepare($query);
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->execute();
 
@@ -91,9 +94,13 @@
             // Check if the user exists and the password matches the hash
             if ($user && password_verify($password, $user['password']))
             {
-                // Store user information in the session
+
+                // Set the username and logged-in status
                 $_SESSION['username'] = $username;
                 $_SESSION['loggedin'] = true;
+
+                // Load the session data from the database into the current session
+                loadSessionData($username);
 
                 // Redirect to a dashboard or home page after successful login
                 header('Location: ../index.php');
@@ -137,6 +144,27 @@
         {
             // Username does not match the pattern, return false
             return false;
+        }
+    }
+
+    // Function to load session data from the database
+    function loadSessionData($username)
+    {
+        global $db;
+
+        // Prepare a SQL statement to select the user's session data
+        $query = "SELECT sessiondata FROM users WHERE username = :username";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+
+        // Fetch the session data as a JSON string
+        $sessionData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Decode the JSON string and store it back into the $_SESSION array
+        if ($sessionData && $sessionData['sessiondata'])
+        {
+            $_SESSION = json_decode($sessionData['sessiondata'], true);
         }
     }
     ?>
