@@ -226,7 +226,7 @@
                     <input type="text" id="lastname" name="lastname" value="<?php echo $lastname; ?>"><br>
                     <label for="profile_image">Upload your profile picture:</label><br>
                     <input type="file" id="profileimage" name="profileimage"><br>
-                    <label for="password">Enter your password to confirm changes:</label>
+                    <label for="password">Enter your current/new password to confirm changes:</label>
                     <input type="password" id="password" name="password" value="" required><br>
                     <button type="submit" name="update" class="btn btn-primary">Update Profile</button>
                 </form>
