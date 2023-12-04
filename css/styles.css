@@ -35,3 +35,8 @@ body {
     background-image: url("../images/index-background.jpeg");
     background-size: cover;
 }
+
+.logout-btn {
+    padding: 4px 16px;
+    border-radius: 0;
+}
