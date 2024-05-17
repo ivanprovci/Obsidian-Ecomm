@@ -9,7 +9,7 @@ Use the account dropdown to view your favourite items, where you can send them t
 
 # Setup
 
-1. Install XAMPP in the root directory (C:\)
+1. Install XAMPP in the root directory (C:\\)
 2. Clone this repository in C:\xampp\htdocs\
 3. Open XAMPP and start the Apache and MySQL servers
 4. Open http://localhost/phpmyadmin
