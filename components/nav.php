@@ -2,8 +2,8 @@
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/INFO3135_Project/index.php" class="nav-link px-3 rounded link-body-emphasis">Home</a></li>
-                <li><a href="/INFO3135_Project/pages/catalog.php"
+                <li><a href="/Obsidian-Ecomm/index.php" class="nav-link px-3 rounded link-body-emphasis">Home</a></li>
+                <li><a href="/Obsidian-Ecomm/pages/catalog.php"
                         class="nav-link px-3 rounded link-body-emphasis">Catalog</a></li>
             </ul>
 
@@ -13,9 +13,9 @@
                     <i class="bi bi-person-circle" style="font-size:2em; color: var(--bs-gray-700);"></i>
                 </a>
                 <ul class="dropdown-menu text-small">
-                    <li><a class="dropdown-item" href="/INFO3135_Project/pages/user-profile.php">View Profile</a></li>
-                    <li><a class="dropdown-item" href="/INFO3135_Project/pages/favourites.php">Favourites</a></li>
-                    <li><a class="dropdown-item" href="/INFO3135_Project/pages/cart.php">View Cart</a></li>
+                    <li><a class="dropdown-item" href="/Obsidian-Ecomm/pages/user-profile.php">View Profile</a></li>
+                    <li><a class="dropdown-item" href="/Obsidian-Ecomm/pages/favourites.php">Favourites</a></li>
+                    <li><a class="dropdown-item" href="/Obsidian-Ecomm/pages/cart.php">View Cart</a></li>
                     <li>
                     </li>
                     <li>
@@ -53,7 +53,7 @@
 
     if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true)
     {
-        header('Location: /INFO3135_Project/pages/login.php');
+        header('Location: /Obsidian-Ecomm/pages/login.php');
         exit;
     }
     else
@@ -72,7 +72,7 @@
         session_destroy();
 
         // Redirect to the login page
-        header('Location: /INFO3135_Project/pages/login.php');
+        header('Location: /Obsidian-Ecomm/pages/login.php');
         exit;
     }
     ?>
